@@ -11,7 +11,7 @@ HEADERS = {
     "X-Shopify-Access-Token": ACCESS_TOKEN
 }
 
-# Tạo metafield cho sản phẩm
+# Tạo metafield
 def create_product_metafield(product_id, namespace, key, value, value_type):
     url = f"{SHOPIFY_STORE_URL}/admin/api/2024-07/products/{product_id}/metafields.json"
     payload = {
@@ -31,7 +31,7 @@ def create_product_metafield(product_id, namespace, key, value, value_type):
         print("Failed to create product metafield:", response.status_code, response.text)
         return None
 
-# Cập nhật metafield của sản phẩm
+# Cập nhật metafield
 def update_product_metafield(product_id, metafield_id, new_value, value_type):
     url = f"{SHOPIFY_STORE_URL}/admin/api/2024-07/products/{product_id}/metafields/{metafield_id}.json"
     payload = {
@@ -60,8 +60,7 @@ def get_product_metafields(product_id):
         return []
 
 if __name__ == "__main__":
-    # Thay `product_id` bằng ID sản phẩm thực tế của bạn
-    product_id = 8191466471585  # Ví dụ ID sản phẩm
+    product_id = 8191466471585
 
     # Bước 1: Tạo metafield
     metafield = create_product_metafield(
@@ -72,7 +71,7 @@ if __name__ == "__main__":
         value_type="single_line_text_field"
     )
 
-    # Bước 2: Cập nhật metafield nếu tạo thành công
+    # Bước 2: Cập nhật metafield 
     if metafield:
         update_product_metafield(
             product_id=product_id,
